@@ -52,7 +52,7 @@ class LoginPage extends StatelessWidget {
                           fontFamily: 'DancingScript',
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          color: Color.fromARGB(255, 243, 199, 68))))
+                          color: Color.fromARGB(255, 243, 199, 68)))),
             ]))));
   }
 }
