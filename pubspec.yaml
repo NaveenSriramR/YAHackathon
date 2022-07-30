@@ -51,6 +51,10 @@ dependencies:
   firebase_core: ^1.20.0
   firebase_storage: ^10.3.4
   flutter_form_builder: ^7.3.1
+  flutter_secure_storage: ^5.0.2
+  flutter_dotenv: ^5.0.2
+  auto_size_text: ^3.0.0
+  flutter_typeahead: ^4.0.0
 
 
   velocity_x: ^3.5.1

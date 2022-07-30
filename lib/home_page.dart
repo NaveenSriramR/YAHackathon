@@ -535,17 +535,14 @@ class _HomePageState extends State<HomePage> {
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => ProductDetails(
-                        productBrand: brand,
                         productId: "1",
                         productName: name,
                         productCost: cost,
-                        productAvailability: "Yes",
                         productMaterial: "Fuchsia",
-                        productImage: image,
-                        productLaunchDate: "01/04/2022",
-                        productCategory: category,
+                        productImageUrl: image,
+                        productYoutubeUrl: image,
                         productColor: color,
-                        productSummary: description,
+                        productDescription: description,
                       )));
         },
         child: Container(

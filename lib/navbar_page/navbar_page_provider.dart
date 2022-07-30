@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../cart_page/cart_page_home.dart';
 import '../home_page.dart';
+import '../search_function/search_screen.dart';
 
 class NavBarWidget extends StatefulWidget {
   const NavBarWidget({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class NavBarWidget extends StatefulWidget {
 
 class _NavBarWidgetState extends State<NavBarWidget> {
   int _currentIndex = 0;
-  final tabs = [const HomePage(), Container(), const CartPage(), Container()];
+  final tabs = [const HomePage(), SearchPage(), const CartPage(), Container()];
   Color? color = const Color(0xFFff9900);
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             inactiveColor: color!,
           ),
           BottomNavyBarItem(
-            icon: const FaIcon(FontAwesomeIcons.tags),
+            icon: const FaIcon(FontAwesomeIcons.searchengin),
             title: Text(
-              'Top Deals',
+              'Search',
               style: GoogleFonts.montserrat(
                 fontSize: 15,
               ),

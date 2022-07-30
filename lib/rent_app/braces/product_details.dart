@@ -9,35 +9,29 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'braces_products.dart';
-import 'single_product.dart';
 
 class ProductDetails extends StatefulWidget {
-  final String? productBrand;
   final String? productId;
   final String? productName;
   final String? productCost;
-  final String? productCategory;
   final String? productColor;
   final String? productMaterial;
-  final String? productImage;
-  final String? productAvailability;
-  final String? productLaunchDate;
-  final String? productSummary;
+  final String? productImageUrl;
+  final String? productYoutubeUrl;
 
-  const ProductDetails(
-      {Key? key,
-      this.productId,
-      this.productName,
-      this.productCost,
-      this.productCategory,
-      this.productColor,
-      this.productMaterial,
-      this.productImage,
-      this.productAvailability,
-      this.productLaunchDate,
-      this.productSummary,
-      this.productBrand})
-      : super(key: key);
+  final String? productDescription;
+
+  const ProductDetails({
+    Key? key,
+    this.productId,
+    this.productName,
+    this.productCost,
+    this.productDescription,
+    this.productColor,
+    this.productMaterial,
+    this.productImageUrl,
+    this.productYoutubeUrl,
+  }) : super(key: key);
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
@@ -72,7 +66,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: GridTile(
               child: Container(
                   color: Colors.white,
-                  child: Image.asset(widget.productImage!)),
+                  child: Image.network(widget.productImageUrl!)),
               footer: Container(
                 color: Colors.white70,
                 child: ListTile(
@@ -261,17 +255,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                         "id": widget.productId,
                         "cost": widget.productCost,
                         "name": widget.productName,
-                        "category": widget.productCategory,
                         "color": widget.productColor,
                         "material": widget.productMaterial,
-                        "image": widget.productImage,
-                        "available": widget.productAvailability,
+                        "imageUrl": widget.productImageUrl,
+                        "youtubeUrl": widget.productYoutubeUrl,
                         "username": "Kishore M",
                         "mobile": "6379659221",
                         "address": "XYZ",
-                        "launchDate": widget.productLaunchDate,
-                        "description": widget.productSummary,
-                        "brand": widget.productBrand,
+                        "description": widget.productDescription,
                         "timestamp": DateTime.now(),
                       }).then((response) {
                         // print(response.id);
@@ -282,17 +273,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                         "id": widget.productId,
                         "cost": widget.productCost,
                         "name": widget.productName,
-                        "category": widget.productCategory,
                         "color": widget.productColor,
                         "material": widget.productMaterial,
-                        "image": widget.productImage,
-                        "available": widget.productAvailability,
-                        "launchDate": widget.productLaunchDate,
-                        "description": widget.productSummary,
-                        "brand": widget.productBrand,
+                        "imageUrl": widget.productImageUrl,
+                        "youtubeUrl": widget.productYoutubeUrl,
                         "username": "Kishore M",
                         "mobile": "6379659221",
                         "address": "XYZ",
+                        "description": widget.productDescription,
                         "timestamp": DateTime.now(),
                       }).then((response) {
                         //print(response.id);
@@ -326,14 +314,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                         "id": widget.productId,
                         "cost": widget.productCost,
                         "name": widget.productName,
-                        "category": widget.productCategory,
                         "color": widget.productColor,
                         "material": widget.productMaterial,
-                        "image": widget.productImage,
-                        "available": widget.productAvailability,
-                        "launchDate": widget.productLaunchDate,
-                        "description": widget.productSummary,
-                        "brand": widget.productBrand,
+                        "imageUrl": widget.productImageUrl,
+                        "youtubeUrl": widget.productYoutubeUrl,
+                        "username": "Kishore M",
+                        "mobile": "6379659221",
+                        "address": "XYZ",
+                        "description": widget.productDescription,
                         "timestamp": DateTime.now(),
                       }).then((response) {
                         //print(response.id);
@@ -396,31 +384,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Category          ',
-                          style: GoogleFonts.montserrat(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: color),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "  " + widget.productCategory!,
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
                           'Color                   ',
                           style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.bold,
@@ -447,58 +410,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Launch Date    ',
-                          style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.bold,
-                            color: color,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.productLaunchDate!,
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
                           'Description   ',
                           style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.bold,
                             color: color,
                             fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          width: 245,
-                          // direction: Axis.vertical,
-                          //fit : FlexFit.tight,
-                          // fit : FlexFit.loose,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              widget.productSummary!,
-                              softWrap: true,
-                              overflow: TextOverflow.fade,
-                              style: GoogleFonts.montserrat(
-                                color: Theme.of(context).secondaryHeaderColor,
-                                fontSize: 16,
-                              ),
-                            ),
                           ),
                         ),
                       ),
@@ -512,10 +428,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                       style: GoogleFonts.montserrat(
                           fontSize: 22, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 360,
-                    child: SimilarProducts(),
                   ),
                 ],
               ),
@@ -564,144 +476,5 @@ class _ProductDetailsState extends State<ProductDetails> {
       // ignore: avoid_print
       print(e);
     }
-  }
-}
-
-class SimilarProducts extends StatefulWidget {
-  const SimilarProducts({Key? key}) : super(key: key);
-
-  @override
-  _SimilarProductsState createState() => _SimilarProductsState();
-}
-
-class _SimilarProductsState extends State<SimilarProducts> {
-  var productList = [
-    {
-      "productId": "1",
-      "productName": "Generic Arm Brace",
-      "productCost": "199",
-      "productBrand": "Brace",
-      "productCategory": "Medicinal",
-      "productColor": "fuchsia",
-      "productMaterial": "Frozen",
-      "productImage": "assets/braces/brace1.jpg",
-      "productAvailability": "All Countries",
-      "productLaunchDate": "30-01-2022",
-      "productSummary": "Stretchy strap helps easy adjustment."
-    },
-    {
-      "productId": "1",
-      "productName": "Generic Arm Brace",
-      "productCost": "199",
-      "productBrand": "Brace",
-      "productCategory": "Medicinal",
-      "productColor": "fuchsia",
-      "productMaterial": "Frozen",
-      "productImage": "assets/braces/brace1.jpg",
-      "productAvailability": "All Countries",
-      "productLaunchDate": "30-01-2022",
-      "productSummary": "Stretchy strap helps easy adjustment."
-    },
-    {
-      "productId": "1",
-      "productName": "Generic Arm Brace",
-      "productCost": "199",
-      "productBrand": "Brace",
-      "productCategory": "Medicinal",
-      "productColor": "fuchsia",
-      "productMaterial": "Frozen",
-      "productImage": "assets/braces/brace1.jpg",
-      "productAvailability": "All Countries",
-      "productLaunchDate": "30-01-2022",
-      "productSummary": "Stretchy strap helps easy adjustment."
-    },
-    {
-      "productId": "1",
-      "productName": "Generic Arm Brace",
-      "productCost": "199",
-      "productBrand": "Brace",
-      "productCategory": "Medicinal",
-      "productColor": "fuchsia",
-      "productMaterial": "Frozen",
-      "productImage": "assets/braces/brace1.jpg",
-      "productAvailability": "All Countries",
-      "productLaunchDate": "30-01-2022",
-      "productSummary": "Stretchy strap helps easy adjustment."
-    },
-    {
-      "productId": "1",
-      "productName": "Generic Arm Brace",
-      "productCost": "199",
-      "productBrand": "Brace",
-      "productCategory": "Medicinal",
-      "productColor": "fuchsia",
-      "productMaterial": "Frozen",
-      "productImage": "assets/braces/brace1.jpg",
-      "productAvailability": "All Countries",
-      "productLaunchDate": "30-01-2022",
-      "productSummary": "Stretchy strap helps easy adjustment."
-    },
-    {
-      "productId": "1",
-      "productName": "Generic Arm Brace",
-      "productCost": "199",
-      "productBrand": "Brace",
-      "productCategory": "Medicinal",
-      "productColor": "fuchsia",
-      "productMaterial": "Frozen",
-      "productImage": "assets/braces/brace1.jpg",
-      "productAvailability": "All Countries",
-      "productLaunchDate": "30-01-2022",
-      "productSummary": "Stretchy strap helps easy adjustment."
-    },
-    {
-      "productId": "1",
-      "productName": "Generic Arm Brace",
-      "productCost": "199",
-      "productBrand": "Brace",
-      "productCategory": "Medicinal",
-      "productColor": "fuchsia",
-      "productMaterial": "Frozen",
-      "productImage": "assets/braces/brace1.jpg",
-      "productAvailability": "All Countries",
-      "productLaunchDate": "30-01-2022",
-      "productSummary": "Stretchy strap helps easy adjustment."
-    },
-    {
-      "productId": "1",
-      "productName": "Generic Arm Brace",
-      "productCost": "199",
-      "productBrand": "Brace",
-      "productCategory": "Medicinal",
-      "productColor": "fuchsia",
-      "productMaterial": "Frozen",
-      "productImage": "assets/braces/brace1.jpg",
-      "productAvailability": "All Countries",
-      "productLaunchDate": "30-01-2022",
-      "productSummary": "Stretchy strap helps easy adjustment."
-    },
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-        itemCount: productList.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          return SingleProduct(
-            productBrand: productList[index]['productBrand'],
-            productName: productList[index]['productName'],
-            productId: productList[index]['productId'],
-            productCost: productList[index]['productCost'],
-            productCategory: productList[index]['productCategory'],
-            productColor: productList[index]['productColor'],
-            productMaterial: productList[index]['productMaterial'],
-            productImage: productList[index]['productImage'],
-            productAvailability: productList[index]['productAvailability'],
-            productLaunchDate: productList[index]['productLaunchDate'],
-            productSummary: productList[index]['productSummary'],
-          );
-        });
   }
 }
