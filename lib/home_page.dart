@@ -250,11 +250,6 @@ class _HomePageState extends State<HomePage> {
         scrollDirection: Axis.vertical,
         children: [
           Container(
-            color: Theme.of(context).primaryColor,
-            width: size.width,
-            height: 30,
-          ),
-          Container(
             height: 30,
             color: Theme.of(context).primaryColor,
           ),
@@ -328,64 +323,6 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   return rentProducts[index];
                 },
-              ),
-            ),
-          ),
-          Container(
-            color: Theme.of(context).primaryColor,
-            width: size.width,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 15.0,
-                left: 15,
-              ),
-              child: Text(
-                'Health Blogs',
-                textAlign: TextAlign.start,
-                style: GoogleFonts.nunito(
-                  color: Theme.of(context).secondaryHeaderColor,
-                  fontSize: 22,
-                ),
-              ),
-            ),
-          ),
-          Container(
-            color: Theme.of(context).primaryColor,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 200.0),
-              child: Divider(
-                thickness: 2,
-                color: color,
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SafeArea(
-                            child: SizedBox.fromSize(
-                              child: const WebView(
-                                initialUrl: "https://www.nerdfitness.com/blog/",
-                                javascriptMode: JavascriptMode.unrestricted,
-                              ),
-                            ),
-                          )));
-            },
-            child: Container(
-              color: Theme.of(context).primaryColor,
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Text(
-                    'Tap Here ...',
-                    style: GoogleFonts.nunito(
-                      color: color,
-                      fontSize: 30,
-                    ),
-                  ),
-                ),
               ),
             ),
           ),

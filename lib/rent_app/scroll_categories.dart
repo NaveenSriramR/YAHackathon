@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'braces/braces_products.dart';
 import 'data.dart';
 
 class ScrollableCategories extends StatelessWidget {
@@ -29,38 +28,7 @@ class ScrollableCategories extends StatelessWidget {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      if (index == 0) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Braces()));
-                      }
-                      if (index == 1) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Braces()));
-                      }
-                      if (index == 2) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Braces()));
-                      }
-                      if (index == 4) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Braces()));
-                      }
-                      if (index == 3) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Braces()));
-                      }
-                    },
+                    onTap: () {},
                     child: Container(
                       height: 120,
                       decoration: BoxDecoration(

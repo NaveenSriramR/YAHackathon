@@ -1,15 +1,7 @@
-List categories = [
-  "Covid Products",
-  "Surgical Implants",
-  "Medical Implants",
-  "Braces",
-  "Dental",
-];
+List categories = ["Clothing", "Jewelry", "Fancy Dresses"];
 
 List categoriesImg = [
-  "assets/covid.svg",
-  "assets/nedical.svg",
-  "assets/surgical.svg",
-  "assets/braces.svg",
-  "assets/nedical.svg",
+  "assets/jewelry.svg",
+  "assets/clothes.svg",
+  "assets/fancy.svg"
 ];

@@ -5,37 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'google_sign_in_configs_app.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill, image: AssetImage('assets/login_bg.gif')),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              GoogleSignInButtonWidget(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class GoogleSignInButtonWidget extends StatelessWidget {
   const GoogleSignInButtonWidget({Key? key}) : super(key: key);
 
@@ -44,10 +13,10 @@ class GoogleSignInButtonWidget extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     Color? color = const Color(0xFFff9900);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(15.0),
       child: Container(
-        height: 80,
-        width: size.width * 0.8,
+        height: 60,
+        width: size.width * 0.7,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -71,7 +40,7 @@ class GoogleSignInButtonWidget extends StatelessWidget {
           label: Text(' Sign In With Google ',
               style: GoogleFonts.montserrat(
                 color: Theme.of(context).primaryColor,
-                fontSize: 24,
+                fontSize: 18,
               )),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(color),
@@ -85,5 +54,49 @@ class GoogleSignInButtonWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  Widget build(BuildContext context) {
+    Color? color = const Color(0xFFff9900);
+    return Scaffold(
+        body: Container(
+            constraints: const BoxConstraints.expand(),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/login_bg.png"), fit: BoxFit.cover),
+            ),
+            child: Center(
+                child: Column(children: [
+              Container(
+                padding: const EdgeInsets.only(top: 100, left: 0),
+                child: Container(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: Image.asset(
+                      'assets/logo.png',
+                      scale: 1.0,
+                    )),
+              ),
+              Container(
+                  padding: const EdgeInsets.only(top: 0, left: 20),
+                  child: Text(
+                    "Life goes on with Try Onn...",
+                    style: GoogleFonts.dawningOfANewDay(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: color),
+                  )),
+              SizedBox(height: 20,),
+              const GoogleSignInButtonWidget(),
+            ]))));
   }
 }
