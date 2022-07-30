@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rec_hackoverflow/rent_app/braces/single_product.dart';
@@ -86,10 +85,6 @@ class SearchPage extends StatelessWidget {
             ),
             SizedBox(
               height: height * 0.06,
-            ),
-            SizedBox(
-              height: 210,
-              child: SvgPicture.asset('assets/search.svg'),
             ),
           ],
         ),
