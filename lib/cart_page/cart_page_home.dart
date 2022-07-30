@@ -49,22 +49,37 @@ class _CartPageState extends State<CartPage> {
                 ),
                 itemBuilder: (BuildContext context, int index) {
                   return SingleCartProduct(
-                    productBrand: snapshot.data.docs[index]['brand']!,
-                    productName: snapshot.data.docs[index]['name']!, //
-                    productId: snapshot.data.docs[index]['id']!, //
-                    productCost: snapshot.data.docs[index]['cost']!, //
-                    productCategory: snapshot.data.docs[index]['category']!,
-                    productColor: snapshot.data.docs[index]['color']!,
-                    productMaterial: snapshot.data.docs[index]['material']!,
-                    productImage: snapshot.data.docs[index]['image']!,
-                    productAvailability: snapshot.data.docs[index]
-                        ['available']!,
-                    productLaunchDate: snapshot.data.docs[index]['launchDate']!,
-                    productSummary: snapshot.data.docs[index]['description']!,
+                    snapshot: snapshot as QuerySnapshot,
+                    index: index,
+                    productName: snapshot.data.docs[index]['name']! == null
+                        ? "A"
+                        : snapshot.data.docs[index]['name']!, //
+                    productId: snapshot.data.docs[index]['id']! == null
+                        ? "A"
+                        : snapshot.data.docs[index]['id']!, //
+                    productCost: snapshot.data.docs[index]['cost']! == null
+                        ? "A"
+                        : snapshot.data.docs[index]['cost']!, //
 
-                    // "id": widget.productId,
-                    //"cost": widget.productCost,
-                    //"name": widget.productName,
+                    productColor: snapshot.data.docs[index]['color']! == null
+                        ? "A"
+                        : snapshot.data.docs[index]['color']!,
+                    productMaterial:
+                        snapshot.data.docs[index]['material']! == null
+                            ? "A"
+                            : snapshot.data.docs[index]['material']!,
+                    productImageUrl:
+                        snapshot.data.docs[index]['imageUrl']! == null
+                            ? "A"
+                            : snapshot.data.docs[index]['imageUrl']!,
+                    productYoutubeUrl:
+                        snapshot.data.docs[index]['youtubeUrl']! == null
+                            ? "A"
+                            : snapshot.data.docs[index]['youtubeUrl']!,
+                    productDescription:
+                        snapshot.data.docs[index]['description']! == null
+                            ? "A"
+                            : snapshot.data.docs[index]['description']!,
                   );
                 });
           }

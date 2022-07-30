@@ -8,32 +8,26 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../video_consultation/app_colors.dart';
 
 class OrderProductDetails extends StatefulWidget {
-  final String? productBrand;
   final String? productId;
   final String? productName;
   final String? productCost;
-  final String? productCategory;
   final String? productColor;
   final String? productMaterial;
-  final String? productImage;
-  final String? productAvailability;
-  final String? productLaunchDate;
-  final String? productSummary;
+  final String? productImageUrl;
+  final String? productYoutubeUrl;
+  final String? productDescription;
 
-  const OrderProductDetails(
-      {Key? key,
-      this.productId,
-      this.productName,
-      this.productCost,
-      this.productCategory,
-      this.productColor,
-      this.productMaterial,
-      this.productImage,
-      this.productAvailability,
-      this.productLaunchDate,
-      this.productSummary,
-      this.productBrand})
-      : super(key: key);
+  const OrderProductDetails({
+    Key? key,
+    this.productId,
+    this.productName,
+    this.productCost,
+    this.productColor,
+    this.productMaterial,
+    this.productImageUrl,
+    this.productYoutubeUrl,
+    this.productDescription,
+  }) : super(key: key);
   @override
   _OrderProductDetailsState createState() => _OrderProductDetailsState();
 }
@@ -66,7 +60,7 @@ class _OrderProductDetailsState extends State<OrderProductDetails> {
             child: GridTile(
               child: Container(
                   color: Colors.white,
-                  child: Image.asset(widget.productImage!)),
+                  child: Image.network(widget.productImageUrl!)),
               footer: Container(
                 color: Colors.white70,
                 child: ListTile(
@@ -158,31 +152,6 @@ class _OrderProductDetailsState extends State<OrderProductDetails> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Category          ',
-                          style: GoogleFonts.montserrat(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: color),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "  " + widget.productCategory!,
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
                           'Color                   ',
                           style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.bold,
@@ -195,32 +164,6 @@ class _OrderProductDetailsState extends State<OrderProductDetails> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "  " + widget.productColor!,
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Launch Date    ',
-                          style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.bold,
-                            color: color,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.productLaunchDate!,
                           style: GoogleFonts.montserrat(
                             color: Theme.of(context).secondaryHeaderColor,
                             fontSize: 16,
@@ -253,7 +196,7 @@ class _OrderProductDetailsState extends State<OrderProductDetails> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              widget.productSummary!,
+                              widget.productDescription!,
                               softWrap: true,
                               overflow: TextOverflow.fade,
                               style: GoogleFonts.montserrat(

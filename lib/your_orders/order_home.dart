@@ -42,19 +42,17 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return SingleOrderProduct(
-                      productBrand: snapshot.data.docs[index]['brand']!,
                       productName: snapshot.data.docs[index]['name']!, //
                       productId: snapshot.data.docs[index]['id']!, //
                       productCost: snapshot.data.docs[index]['cost']!, //
-                      productCategory: snapshot.data.docs[index]['category']!,
+
                       productColor: snapshot.data.docs[index]['color']!,
                       productMaterial: snapshot.data.docs[index]['material']!,
-                      productImage: snapshot.data.docs[index]['image']!,
-                      productAvailability: snapshot.data.docs[index]
-                          ['available']!,
-                      productLaunchDate: snapshot.data.docs[index]
-                          ['launchDate']!,
-                      productSummary: snapshot.data.docs[index]['description']!,
+                      productImageUrl: snapshot.data.docs[index]['imageUrl']!,
+                      productYoutubeUrl: snapshot.data.docs[index]
+                          ['youtubeLink']!,
+                      productDescription: snapshot.data.docs[index]
+                          ['description']!,
 
                       // "id": widget.productId,
                       //"cost": widget.productCost,

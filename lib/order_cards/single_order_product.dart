@@ -22,17 +22,14 @@ class _OrderProductsState extends State<OrderProducts> {
         ),
         itemBuilder: (BuildContext context, int index) {
           return SingleOrderProduct(
-            productBrand: productList[index]['productBrand']!,
-            productName: productList[index]['productName']!,
-            productId: productList[index]['productId']!,
-            productCost: productList[index]['productCost']!,
-            productCategory: productList[index]['productCategory']!,
-            productColor: productList[index]['productColor']!,
-            productMaterial: productList[index]['productMaterial']!,
-            productImage: productList[index]['productImage']!,
-            productAvailability: productList[index]['productAvailability']!,
-            productLaunchDate: productList[index]['productLaunchDate']!,
-            productSummary: productList[index]['productSummary']!,
+            productName: productList[index]['name']!,
+            productId: productList[index]['id']!,
+            productCost: productList[index]['cost']!,
+            productColor: productList[index]['color']!,
+            productMaterial: productList[index]['material']!,
+            productImageUrl: productList[index]['imageUrl']!,
+            productYoutubeUrl: productList[index]['youtubeUrl']!,
+            productDescription: productList[index]['description']!,
           );
         });
   }
@@ -42,29 +39,24 @@ class SingleOrderProduct extends StatelessWidget {
   final String? productId;
   final String? productName;
   final String? productCost;
-  final String? productBrand;
-  final String? productCategory;
+
   final String? productColor;
   final String? productMaterial;
-  final String? productImage;
-  final String? productAvailability;
-  final String? productLaunchDate;
-  final String? productSummary;
+  final String? productImageUrl;
+  final String? productYoutubeUrl;
+  final String? productDescription;
 
-  const SingleOrderProduct(
-      {Key? key,
-      this.productId,
-      this.productName,
-      this.productCost,
-      this.productBrand,
-      this.productCategory,
-      this.productColor,
-      this.productMaterial,
-      this.productImage,
-      this.productAvailability,
-      this.productLaunchDate,
-      this.productSummary})
-      : super(key: key);
+  const SingleOrderProduct({
+    Key? key,
+    this.productId,
+    this.productName,
+    this.productCost,
+    this.productColor,
+    this.productMaterial,
+    this.productImageUrl,
+    this.productYoutubeUrl,
+    this.productDescription,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,17 +82,14 @@ class SingleOrderProduct extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => OrderProductDetails(
-                              productBrand: productBrand,
                               productId: productId,
                               productName: productName,
                               productCost: productCost,
-                              productAvailability: productAvailability,
                               productMaterial: productMaterial,
-                              productImage: productImage,
-                              productLaunchDate: productLaunchDate,
-                              productCategory: productCategory,
+                              productImageUrl: productImageUrl,
+                              productYoutubeUrl: productYoutubeUrl,
                               productColor: productColor,
-                              productSummary: productSummary,
+                              productDescription: productDescription,
                             )));
               },
               child: GridTile(
@@ -124,7 +113,7 @@ class SingleOrderProduct extends StatelessWidget {
                   ),
                 ),
                 child: Image.asset(
-                  productImage!,
+                  productImageUrl!,
                   fit: BoxFit.cover,
                 ),
               ),

@@ -7,8 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'google_login_configs_provider/google_sign_in_configs_app.dart';
-import 'rent_app/braces/product_details.dart';
 import 'rent_app/scroll_categories.dart';
+import 'rent_app/shirts/product_details.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     List<Widget> rentProducts = [
       singleProductScroll(
         size,
@@ -30,6 +29,185 @@ class _HomePageState extends State<HomePage> {
         '500',
         'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
         'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+    ];
+
+    List<Widget> shirtProducts = [
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/00709_00.jpg?alt=media',
+        'White Dress',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
+      ),
+      singleProductScroll(
+        size,
+        'https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/01967_00.jpg?alt=media',
+        'Black T-Shirt',
+        '1000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'Black',
       ),
       singleProductScroll(
         size,
@@ -257,6 +435,50 @@ class _HomePageState extends State<HomePage> {
                 itemCount: rentProducts.length,
                 itemBuilder: (context, index) {
                   return rentProducts[index];
+                },
+              ),
+            ),
+          ),
+          Container(
+            color: Theme.of(context).primaryColor,
+            width: size.width,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 15.0,
+                left: 15,
+              ),
+              child: Text(
+                'Top shirts',
+                textAlign: TextAlign.start,
+                style: GoogleFonts.nunito(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  fontSize: 22,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            color: Theme.of(context).primaryColor,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 200.0),
+              child: Divider(
+                thickness: 2,
+                color: color,
+              ),
+            ),
+          ),
+          Container(
+            width: size.width,
+            color: Theme.of(context).primaryColor,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 300),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: shirtProducts.length,
+                itemBuilder: (context, index) {
+                  return shirtProducts[index];
                 },
               ),
             ),

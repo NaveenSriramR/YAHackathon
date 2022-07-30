@@ -248,25 +248,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     elevation: 1.0,
                     onPressed: () {
                       launchRazorPay();
-                      var user = FirebaseAuth.instance.currentUser;
-                      FirebaseFirestore.instance
-                          .collection(user!.uid + "_orders")
-                          .add({
-                        "id": widget.productId,
-                        "cost": widget.productCost,
-                        "name": widget.productName,
-                        "color": widget.productColor,
-                        "material": widget.productMaterial,
-                        "imageUrl": widget.productImageUrl,
-                        "youtubeUrl": widget.productYoutubeUrl,
-                        "username": "Kishore M",
-                        "mobile": "6379659221",
-                        "address": "XYZ",
-                        "description": widget.productDescription,
-                        "timestamp": DateTime.now(),
-                      }).then((response) {
-                        // print(response.id);
-                      });
+
                       FirebaseFirestore.instance
                           .collection("overall_cart")
                           .add({
@@ -421,14 +403,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ],
                   ),
                   const Divider(),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      'Similar Products',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -451,7 +425,25 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   Razorpay? _razorpay;
 
-  void _handlePayment(PaymentSuccessResponse res) {}
+  void _handlePayment(PaymentSuccessResponse res) {
+    var user = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore.instance.collection(user!.uid + "_orders").add({
+      "id": widget.productId,
+      "cost": widget.productCost,
+      "name": widget.productName,
+      "color": widget.productColor,
+      "material": widget.productMaterial,
+      "imageUrl": widget.productImageUrl,
+      "youtubeUrl": widget.productYoutubeUrl,
+      "username": "Kishore M",
+      "mobile": "6379659221",
+      "address": "XYZ",
+      "description": widget.productDescription,
+      "timestamp": DateTime.now(),
+    }).then((response) {
+      // print(response.id);
+    });
+  }
 
   void initaliseRazorPay() {
     _razorpay = Razorpay();

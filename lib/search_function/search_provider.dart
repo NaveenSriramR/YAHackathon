@@ -11,25 +11,30 @@ class SearchProvider {
   Future<List> searchResults(
       {required String query, String category = ''}) async {
     print(query);
-    print('doing');
-    final token = await storage.read(key: 'token');
-    print(token);
+    print('getting data ...');
+    // final token = await storage.read(key: 'token');
+    // print(token);
+    try {
+      final response = await http.post(
+        Uri.parse("http://192.168.200.221:8000/api/search/'he'"),
+        body: json.encode({
+          "query": query,
+          "category": category,
+        }),
+        headers: {
+          ...Utils.headerValue,
+          // 'auth-token': token!,
+        },
+      );
+      print(response);
+      final responseData = json.decode(response.body);
+      print(responseData);
+      print('here');
 
-    final response = await http.post(
-      Uri.parse("http://192.168.200.221:8000/api/search/'he'"),
-      body: json.encode({
-        "query": query,
-        "category": category,
-      }),
-      headers: {
-        ...Utils.headerValue,
-        'auth-token': token!,
-      },
-    );
-    final responseData = json.decode(response.body);
-    print(responseData);
-    print('here');
-
-    return responseData;
+      return responseData;
+    } catch (error) {
+      print(error);
+      return [];
+    }
   }
 }

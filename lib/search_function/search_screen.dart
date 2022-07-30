@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rec_hackoverflow/rent_app/braces/single_product.dart';
 
+import '../rent_app/shirts/single_product.dart';
 import 'search_provider.dart';
 
 class SearchPage extends StatelessWidget {
@@ -40,7 +40,7 @@ class SearchPage extends StatelessWidget {
                   autofocus: true,
                   decoration: InputDecoration(
                     label: const Text(
-                      'Seach for products',
+                      'Search for products',
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -54,12 +54,12 @@ class SearchPage extends StatelessWidget {
                     query: pattern,
                   );
 
-                  return searchResults;
+                  return searchResults as dynamic;
                 },
                 itemBuilder: (context, suggestion) {
                   return ListTile(
-                    title: Text((suggestion as Map)['product_name']),
-                    subtitle: Text('${suggestion['price'].toString()} Rs'),
+                    title: Text((suggestion as Map)['name']),
+                    subtitle: Text('${suggestion['cost'].toString()} Rs'),
                   );
                 },
                 onSuggestionSelected: (suggestion) {
@@ -68,15 +68,24 @@ class SearchPage extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => SingleProduct(
-                        productName: data['name'] ?? "",
-                        productId: data['id'].toString() ?? "",
-                        productColor: data['color'] ?? "",
-                        productDescription:
-                            data['description'] ?? 'No description',
-                        productMaterial: data['material'] ?? "",
-                        productImageUrl: data['imageUrl'] ?? "",
-                        productYoutubeUrl: data['youtubeUrl'] ?? "",
-                        productCost: data['cost'].toString() ?? '',
+                        productName: data['name'] == null ? "A" : data['name'],
+                        productId:
+                            data['id'].toString() == null ? "A" : data['id'],
+                        productColor:
+                            data['color'] == null ? "A" : data['color'],
+                        productDescription: data['description'] == null
+                            ? 'No description'
+                            : data['description'],
+                        productMaterial:
+                            data['material'] ? "A" : data['material'],
+                        productImageUrl:
+                            "https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/${data['imageUrl']}?alt=media",
+                        productYoutubeUrl: data['youtubeLink'] == null
+                            ? "A"
+                            : data['youtubeLink'],
+                        productCost: data['cost'].toString() == null
+                            ? 'A'
+                            : data['cost'],
                       ),
                     ),
                   );
