@@ -2,12 +2,9 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rec_hackoverflow/record_storage/record_storage_provider.dart';
 
-import '../chatbot/start.dart';
+import '../cart_page/cart_page_home.dart';
 import '../home_page.dart';
-import '../news_app/screens/news_page.dart';
-import '../skin_classsify/home.dart';
 
 class NavBarWidget extends StatefulWidget {
   const NavBarWidget({Key? key}) : super(key: key);
@@ -18,14 +15,8 @@ class NavBarWidget extends StatefulWidget {
 
 class _NavBarWidgetState extends State<NavBarWidget> {
   int _currentIndex = 0;
-  final tabs = [
-    const HomePage(),
-
-    const HealthNewsPage(),
-    Home(),
-    RecordStorage(),
-  ];
-  Color? color = const Color(0xFF78fe04);
+  final tabs = [const HomePage(), Container(), const CartPage(), Container()];
+  Color? color = const Color(0xFFff9900);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,9 +36,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             inactiveColor: color!,
           ),
           BottomNavyBarItem(
-            icon: const FaIcon(FontAwesomeIcons.newspaper),
+            icon: const FaIcon(FontAwesomeIcons.tags),
             title: Text(
-              'News',
+              'Top Deals',
               style: GoogleFonts.montserrat(
                 fontSize: 15,
               ),
@@ -56,9 +47,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             inactiveColor: color!,
           ),
           BottomNavyBarItem(
-            icon: const FaIcon(FontAwesomeIcons.userDoctor),
+            icon: const FaIcon(FontAwesomeIcons.cartPlus),
             title: Text(
-              'Skin Classify',
+              'Your Cart',
               style: GoogleFonts.montserrat(
                 fontSize: 15,
               ),
@@ -67,9 +58,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             inactiveColor: color!,
           ),
           BottomNavyBarItem(
-            icon: const FaIcon(FontAwesomeIcons.recordVinyl),
+            icon: const FaIcon(FontAwesomeIcons.person),
             title: Text(
-              'Records',
+              'Profile',
               style: GoogleFonts.montserrat(
                 fontSize: 15,
               ),

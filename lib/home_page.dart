@@ -3,12 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:rec_hackoverflow/blood_bank/blood_bak_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'bmi_pages/bmi_page.dart';
-import 'cart_page/cart_page_home.dart';
 import 'google_login_configs_provider/google_sign_in_configs_app.dart';
 import 'rent_app/braces/product_details.dart';
 import 'rent_app/scroll_categories.dart';
@@ -24,14 +21,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List<Widget> scrolls = [
-      singleRentScroll(size, "Splits Training",
-          "https://play.google.com/store/apps/details?id=splits.splitstraining.dothesplits.splitsin30days"),
-      singleRentScroll(size, 'Nike Training Club',
-          "https://play.google.com/store/apps/details?id=com.nike.ntc"),
-      singleRentScroll(size, 'SixPacks in 30 days',
-          "https://play.google.com/store/apps/details?id=sixpack.sixpackabs.absworkout"),
-    ];
 
     List<Widget> rentProducts = [
       singleProductScroll(
@@ -117,7 +106,7 @@ class _HomePageState extends State<HomePage> {
           'Oxygen'),
     ];
 
-    Color? color = const Color(0xFF78fe04);
+    Color? color = const Color(0xFFff9900);
     User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
@@ -129,11 +118,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const CircleAvatar(
                   radius: 20,
-                  backgroundImage: AssetImage('assets/download.jpg'),
+                  backgroundImage: AssetImage('assets/try.png'),
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  'DocBook',
+                  'Try-Onn',
                   style: GoogleFonts.montserrat(color: color),
                 ),
               ],
@@ -141,12 +130,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         actions: [
-          IconButton(
-              icon: Icon(Icons.shopping_cart, color: color),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const CartPage()));
-              }),
           IconButton(
               icon: Icon(Icons.logout, color: color),
               onPressed: () {
@@ -173,18 +156,6 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: Theme.of(context).primaryColor,
                     child: ClipOval(
                         child: Image.network(user!.photoURL.toString())),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    child: Text(
-                      "Welcome !!!",
-                      textAlign: TextAlign.start,
-                      style: GoogleFonts.montserrat(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -248,40 +219,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BloodBankDatsets()));
-                    },
-                    child: ListTile(
-                      title: Text(
-                        'Search Blood Banks',
-                        style: GoogleFonts.montserrat(
-                          color: color,
-                        ),
-                      ),
-                      leading: Icon(
-                        Icons.local_hospital,
-                        color: color,
-                      ),
-                      trailing: Icon(Icons.arrow_right, color: color, size: 32),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: Divider(
-                      color: color,
-                      thickness: 1,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BmiCalculator()));
-                    },
+                    onTap: () {},
                     child: ListTile(
                       title: Text(
                         'Check your BMI',
@@ -316,8 +254,6 @@ class _HomePageState extends State<HomePage> {
             width: size.width,
             height: 30,
           ),
-          customDivider("News of the Day"),
-          Product_Carousel(context),
           Container(
             height: 30,
             color: Theme.of(context).primaryColor,
@@ -342,11 +278,11 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             color: Theme.of(context).primaryColor,
-            child: const Padding(
-              padding: EdgeInsets.only(right: 200.0),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 200.0),
               child: Divider(
                 thickness: 2,
-                color: Color(0xFF78fe04),
+                color: color,
               ),
             ),
           ),
@@ -371,11 +307,11 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             color: Theme.of(context).primaryColor,
-            child: const Padding(
-              padding: EdgeInsets.only(right: 200.0),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 200.0),
               child: Divider(
                 thickness: 2,
-                color: Color(0xFF78fe04),
+                color: color,
               ),
             ),
           ),
@@ -415,11 +351,11 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             color: Theme.of(context).primaryColor,
-            child: const Padding(
-              padding: EdgeInsets.only(right: 200.0),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 200.0),
               child: Divider(
                 thickness: 2,
-                color: Color(0xFF78fe04),
+                color: color,
               ),
             ),
           ),
@@ -459,7 +395,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   customDivider(String title) {
-    Color? color = const Color(0xFF78fe04);
+    Color? color = const Color(0xFFff9900);
     return Container(
       color: Theme.of(context).primaryColor,
       child: Row(
@@ -560,22 +496,6 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     for (int i = 0; i < 5; i++)
-        //       Container(
-        //         width: 8,
-        //         height: 8,
-        //         margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-        //         decoration: BoxDecoration(
-        //             shape: BoxShape.circle,
-        //             color: i == _ImageCarouselIndex
-        //                 ? Color.fromRGBO(0, 0, 0, 0.9)
-        //                 : Color.fromRGBO(0, 0, 0, 0.4)),
-        //       ),
-        //   ],
-        // ),
       ],
     );
   }
@@ -589,7 +509,8 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Widget singleRentScroll(Size size, String title, String navigate) {
+  Widget singleRentScroll(
+      Size size, String title, String navigate, Color color) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -632,7 +553,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   title,
                   style: GoogleFonts.nunito(
-                    color: const Color(0xFF78fe04),
+                    color: color,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
@@ -726,7 +647,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   name,
                   style: GoogleFonts.nunito(
-                    color: const Color(0xFF78fe04),
+                    color: const Color(0xFFff9900),
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),

@@ -42,7 +42,7 @@ class GoogleSignInButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Color? color = const Color(0xFF78fe04);
+    Color? color = const Color(0xFFff9900);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(

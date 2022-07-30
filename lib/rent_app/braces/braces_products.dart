@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'single_product.dart';
 
-Color? color = const Color(0xFF78fe04);
+Color? color = const Color(0xFFff9900);
 
 class Braces extends StatefulWidget {
   const Braces({Key? key}) : super(key: key);

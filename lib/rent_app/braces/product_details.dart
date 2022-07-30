@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -90,7 +89,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Expanded(
                         child: Text(
                           "Rent at Rs." + _contractBuyCost.toString() + '/-',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Colors.red,
@@ -188,11 +187,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                     100);
                                           });
                                         }
-                                        print(_contractBuyCost);
                                       },
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(context)
-                                      ]),
+
                                       items: monthOptions
                                           .map((gender) => DropdownMenuItem(
                                                 value: gender,
@@ -228,7 +224,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                             onChange: (value) {
                               setState(() {
                                 quantity = value;
-                                print(quantity);
                               });
                             },
                             defaultValue: 1,
@@ -277,10 +272,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                         "launchDate": widget.productLaunchDate,
                         "description": widget.productSummary,
                         "brand": widget.productBrand,
-                        "timestamp": new DateTime.now(),
+                        "timestamp": DateTime.now(),
                       }).then((response) {
-                        print(response.id);
-                      }).catchError((error) => print('Error'));
+                        // print(response.id);
+                      });
                       FirebaseFirestore.instance
                           .collection("overall_cart")
                           .add({
@@ -298,10 +293,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                         "username": "Kishore M",
                         "mobile": "6379659221",
                         "address": "XYZ",
-                        "timestamp": new DateTime.now(),
+                        "timestamp": DateTime.now(),
                       }).then((response) {
-                        print(response.id);
-                      }).catchError((error) => print('Error'));
+                        //print(response.id);
+                      });
                     },
                   ),
                   const Divider(),
@@ -339,10 +334,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                         "launchDate": widget.productLaunchDate,
                         "description": widget.productSummary,
                         "brand": widget.productBrand,
-                        "timestamp": new DateTime.now(),
+                        "timestamp": DateTime.now(),
                       }).then((response) {
-                        print(response.id);
-                      }).catchError((error) => print('Error'));
+                        //print(response.id);
+                      });
                     },
                   ),
                   Row(
@@ -558,8 +553,8 @@ class _ProductDetailsState extends State<ProductDetails> {
   void launchRazorPay() {
     User? user = FirebaseAuth.instance.currentUser;
     var options = {
-      "key": "rzp_test_ZdIhaAYTQ8urAz",
-      "amount": "19900",
+      "key": "rzp_live_eULnQWUHUQXgbx",
+      "amount": "100",
       "name": user!.displayName.toString(),
       "description": "Purchase from ${user.displayName.toString()}"
     };

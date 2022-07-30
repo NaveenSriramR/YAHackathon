@@ -2,13 +2,12 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../video_consultation/app_colors.dart';
 
-class CartProductDetails extends StatefulWidget {
+class OrderProductDetails extends StatefulWidget {
   final String? productBrand;
   final String? productId;
   final String? productName;
@@ -21,7 +20,7 @@ class CartProductDetails extends StatefulWidget {
   final String? productLaunchDate;
   final String? productSummary;
 
-  const CartProductDetails(
+  const OrderProductDetails(
       {Key? key,
       this.productId,
       this.productName,
@@ -36,16 +35,15 @@ class CartProductDetails extends StatefulWidget {
       this.productBrand})
       : super(key: key);
   @override
-  _CartProductDetailsState createState() => _CartProductDetailsState();
+  _OrderProductDetailsState createState() => _OrderProductDetailsState();
 }
 
-class _CartProductDetailsState extends State<CartProductDetails> {
+class _OrderProductDetailsState extends State<OrderProductDetails> {
   var monthOptions = [
     '1 week',
     '2 weeks',
     '4 weeks',
   ];
-  final _formKey = GlobalKey<FormBuilderState>();
   int? _oneTimeBuyCost;
   double? _contractBuyCost;
   int? _week;
@@ -104,124 +102,6 @@ class _CartProductDetailsState extends State<CartProductDetails> {
                   const SizedBox(
                     height: 10,
                   ),
-                  MaterialButton(
-                    height: 60,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Center(
-                              child: Text(
-                            'Buy Now @ Rs.' + widget.productCost! + "/-",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 19,
-                            ),
-                          )),
-                        ),
-                      ],
-                    ),
-                    color: color,
-                    textColor: Theme.of(context).primaryColor,
-                    elevation: 1.0,
-                    onPressed: () {
-                      launchRazorPay();
-                    },
-                  ),
-                  FormBuilder(
-                    key: _formKey,
-                    initialValue: const {
-                      "week": "1 week",
-                    },
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(9),
-                            child: Card(
-                              elevation: 10,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 11.0),
-                                  child: Center(
-                                    child: FormBuilderDropdown(
-                                      name: 'week',
-                                      decoration: InputDecoration(
-                                        labelText: 'Choose Rent Duration',
-                                        labelStyle: TextStyle(color: color),
-                                        border: InputBorder.none,
-                                      ),
-                                      // initialValue: 'Male',
-                                      allowClear: true,
-                                      onChanged: (value) {
-                                        if (value == '1 week') {
-                                          setState(() {
-                                            _week = 5;
-                                            _contractBuyCost =
-                                                (_oneTimeBuyCost! *
-                                                    _week! /
-                                                    100);
-                                          });
-                                        } else if (value == '2 weeks') {
-                                          setState(() {
-                                            _week = 10;
-                                            _contractBuyCost =
-                                                (_oneTimeBuyCost! *
-                                                    _week! /
-                                                    100);
-                                          });
-                                        } else if (value == '4 weeks') {
-                                          setState(() {
-                                            _week = 20;
-                                            _contractBuyCost =
-                                                (_oneTimeBuyCost! *
-                                                    _week! /
-                                                    100);
-                                          });
-                                        }
-                                      },
-
-                                      items: monthOptions
-                                          .map((gender) => DropdownMenuItem(
-                                                value: gender,
-                                                child: Text(gender),
-                                              ))
-                                          .toList(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ]),
-                  ),
-                  MaterialButton(
-                    height: 60,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Center(
-                              child: Text(
-                            'Rent Now @ Rs.' +
-                                _contractBuyCost.toString() +
-                                "/-",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 19,
-                            ),
-                          )),
-                        ),
-                      ],
-                    ),
-                    color: color,
-                    textColor: Theme.of(context).primaryColor,
-                    elevation: 1.0,
-                    onPressed: () {
-                      launchRazorPay();
-                    },
-                  ),
-                  const Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -385,6 +265,50 @@ class _CartProductDetailsState extends State<CartProductDetails> {
                         ),
                       ),
                     ],
+                  ),
+                  MaterialButton(
+                    height: 60,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                              child: Text(
+                            'Track your Order',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 19,
+                            ),
+                          )),
+                        ),
+                      ],
+                    ),
+                    color: color,
+                    textColor: Theme.of(context).primaryColor,
+                    elevation: 1.0,
+                    onPressed: () {
+                      launchRazorPay();
+                    },
+                  ),
+                  MaterialButton(
+                    height: 60,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                              child: Text(
+                            'Cancel Order',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 19,
+                            ),
+                          )),
+                        ),
+                      ],
+                    ),
+                    color: Colors.red,
+                    textColor: Theme.of(context).primaryColor,
+                    elevation: 1.0,
+                    onPressed: () {
+                      launchRazorPay();
+                    },
                   ),
                 ],
               ),

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../cart_page/single_cart_product.dart';
+import '../order_cards/single_order_product.dart';
 import '../video_consultation/app_colors.dart';
 
 class OrderPage extends StatefulWidget {
@@ -41,7 +41,7 @@ class _OrderPageState extends State<OrderPage> {
                     crossAxisCount: 2,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return SingleCartProduct(
+                    return SingleOrderProduct(
                       productBrand: snapshot.data.docs[index]['brand']!,
                       productName: snapshot.data.docs[index]['name']!, //
                       productId: snapshot.data.docs[index]['id']!, //
