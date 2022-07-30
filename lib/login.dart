@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: 'DancingScript',
                           fontSize: 35,
-                          color: Color.fromARGB(255, 102, 50, 76)))),
+                          color: Color(0xffff9900)))),
               Container(
                   child: SignInButton(
                 text: "Sign in with Google",
