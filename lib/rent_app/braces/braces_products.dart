@@ -24,7 +24,7 @@ class _BracesState extends State<Braces> {
               Row(
                 children: [
                   Text(
-                    'Braces',
+                    'Men Shirts',
                     style: GoogleFonts.montserrat(color: color),
                   ),
                 ],

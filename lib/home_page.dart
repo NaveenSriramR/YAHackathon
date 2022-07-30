@@ -291,7 +291,7 @@ class _HomePageState extends State<HomePage> {
                 left: 15,
               ),
               child: Text(
-                'Top Products to Buy/Rent',
+                'Top deals',
                 textAlign: TextAlign.start,
                 style: GoogleFonts.nunito(
                   color: Theme.of(context).secondaryHeaderColor,

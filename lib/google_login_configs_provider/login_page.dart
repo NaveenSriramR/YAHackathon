@@ -95,7 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold,
                         color: color),
                   )),
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               const GoogleSignInButtonWidget(),
             ]))));
   }
