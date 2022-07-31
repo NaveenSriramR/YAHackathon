@@ -16,8 +16,10 @@ def searchRoute(request,query):
     # item_result = Items.aggregate([
     #     { "$match" : { "name" : query } } 
     #     ])
-    # pattern = re.compile(query,re.I)
-    item_result = Items.find({"name":{'$regex':r'.*'+re.escape(query)+'.*'}})
+    pattern = re.compile(query,re.I)
+    item_result = Items.find({"name":{'$regex':query}})
+    # r'\'+re.escape(query)+r'\'}})
+    # item_result = Items.find()
     print(query)
     return HttpResponse(json_util.dumps(item_result))
 
@@ -30,7 +32,7 @@ def mlRoute(request):
     http = urllib3.PoolManager()
     r = http.request('GET',url)
     cloth_img = Image.open(io.BytesIO(r.data))
-
+    cloth_img.show()
     # print(request.FILES.get('myfile'))
     # ml_result = mlmodel.predict(search_params.data.img1,search_params.data.img2)
     # return HttpResponse()
