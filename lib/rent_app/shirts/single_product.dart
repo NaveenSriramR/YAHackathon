@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -359,10 +360,17 @@ class _SingleProductState extends State<SingleProduct> {
               children: [
                 Container(
                     height: size.height * 0.15,
+                    width: size.width * 0.35,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.network(widget.productImageUrl!),
-                    )),
+                        padding: const EdgeInsets.all(8.0),
+                        child: CachedNetworkImage(
+                          imageUrl: widget.productImageUrl!,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ))),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(

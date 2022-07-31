@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../your_orders/order_home.dart';
 import 'braces_products.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -42,6 +44,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     '2 weeks',
     '4 weeks',
   ];
+
   final _formKey = GlobalKey<FormBuilderState>();
   int? _oneTimeBuyCost;
   double? _contractBuyCost;
@@ -50,6 +53,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
+    Size? size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
@@ -66,7 +70,11 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: GridTile(
               child: Container(
                   color: Colors.white,
-                  child: Image.network(widget.productImageUrl!)),
+                  child: CachedNetworkImage(
+                    imageUrl: widget.productImageUrl!,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )),
               footer: Container(
                 color: Colors.white70,
                 child: ListTile(
@@ -325,11 +333,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.productName!,
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontSize: 16,
+                        child: SizedBox(
+                          width: size.width * 0.6,
+                          child: Text(
+                            widget.productName!,
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
@@ -442,6 +453,10 @@ class _ProductDetailsState extends State<ProductDetails> {
       "timestamp": DateTime.now(),
     }).then((response) {
       // print(response.id);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => OrderPage())); // print(response.id);
     });
   }
 

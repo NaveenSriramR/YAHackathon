@@ -37,49 +37,7 @@ class _BracesState extends State<Braces> {
 
   productCarousel(BuildContext context) {
     return Column(
-      children: [
-        Container()
-        // Container(
-        //   color: Colors.white,
-        //   height: 230.0,
-        //   child: CarouselSlider.builder(
-        //     itemCount: braceCarousel.length,
-        //     options: CarouselOptions(
-        //       pageSnapping: true,
-        //       height: 200,
-        //       enlargeCenterPage: true,
-        //       autoPlay: true,
-        //       aspectRatio: 16 / 9,
-        //       autoPlayCurve: Curves.fastOutSlowIn,
-        //       enableInfiniteScroll: true,
-        //       autoPlayAnimationDuration: const Duration(milliseconds: 2000),
-        //       viewportFraction: 0.8,
-        //     ),
-        //     itemBuilder: (BuildContext context, int index, int realIndex) {
-        //       return GestureDetector(
-        //         onTap: () {},
-        //         child: Container(
-        //           margin: const EdgeInsets.all(5.0),
-        //           decoration: BoxDecoration(
-        //               borderRadius: BorderRadius.circular(10.0),
-        //               boxShadow: [
-        //                 BoxShadow(
-        //                   color: Colors.black.withAlpha(100),
-        //                   blurRadius: 10,
-        //                 ),
-        //               ],
-        //               image: DecorationImage(
-        //                 image: AssetImage(
-        //                   braceCarousel[index],
-        //                 ),
-        //                 fit: BoxFit.cover,
-        //               )),
-        //         ),
-        //       );
-        //     },
-        //   ),
-        // ),
-      ],
+      children: [Container()],
     );
   }
 }

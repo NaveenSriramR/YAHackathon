@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rec_hackoverflow/rent_app/jewelry/product_details.dart';
 
-import '../rent_app/shirts/single_product.dart';
 import 'search_provider.dart';
 
 class SearchPage extends StatelessWidget {
@@ -67,7 +67,7 @@ class SearchPage extends StatelessWidget {
                   print(data);
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => SingleProduct(
+                      builder: (context) => ProductDetails(
                         productName: data['name'] == null ? "A" : data['name'],
                         productId:
                             data['id'].toString() == null ? "A" : data['id'],
@@ -77,7 +77,7 @@ class SearchPage extends StatelessWidget {
                             ? 'No description'
                             : data['description'],
                         productMaterial:
-                            data['material'] ? "A" : data['material'],
+                            data['material'] == null ? "A" : data['material'],
                         productImageUrl:
                             "https://firebasestorage.googleapis.com/v0/b/tryonn-9ae69.appspot.com/o/${data['imageUrl']}?alt=media",
                         productYoutubeUrl: data['youtubeLink'] == null

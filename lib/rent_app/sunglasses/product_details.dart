@@ -7,10 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:rec_hackoverflow/your_orders/order_home.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-import '../video_consultation/app_colors.dart';
+import '../../cart_page/cart_page_home.dart';
+import 'shoes_products.dart';
 
-class CartProductDetails extends StatefulWidget {
+class ProductDetails extends StatefulWidget {
   final String? productId;
   final String? productName;
   final String? productCost;
@@ -18,28 +21,25 @@ class CartProductDetails extends StatefulWidget {
   final String? productMaterial;
   final String? productImageUrl;
   final String? productYoutubeUrl;
-  final AsyncSnapshot? snapshot;
-  final int? index;
+
   final String? productDescription;
 
-  const CartProductDetails({
+  const ProductDetails({
     Key? key,
     this.productId,
-    this.snapshot,
-    this.index,
     this.productName,
     this.productCost,
+    this.productDescription,
     this.productColor,
     this.productMaterial,
     this.productImageUrl,
     this.productYoutubeUrl,
-    this.productDescription,
   }) : super(key: key);
   @override
-  _CartProductDetailsState createState() => _CartProductDetailsState();
+  _ProductDetailsState createState() => _ProductDetailsState();
 }
 
-class _CartProductDetailsState extends State<CartProductDetails> {
+class _ProductDetailsState extends State<ProductDetails> {
   var monthOptions = [
     '1 week',
     '2 weeks',
@@ -49,10 +49,10 @@ class _CartProductDetailsState extends State<CartProductDetails> {
   int? _oneTimeBuyCost;
   double? _contractBuyCost;
   int? _week;
+  int? quantity;
 
   @override
   Widget build(BuildContext context) {
-    var docId = widget.snapshot!.data.docs[widget.index!].id;
     Size? size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -69,13 +69,12 @@ class _CartProductDetailsState extends State<CartProductDetails> {
             height: 300,
             child: GridTile(
               child: Container(
-                color: Colors.white,
-                child: CachedNetworkImage(
-                  imageUrl: widget.productImageUrl!,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
-              ),
+                  color: Colors.white,
+                  child: CachedNetworkImage(
+                    imageUrl: widget.productImageUrl!,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )),
               footer: Container(
                 color: Colors.white70,
                 child: ListTile(
@@ -91,9 +90,11 @@ class _CartProductDetailsState extends State<CartProductDetails> {
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
-                          widget.productCost!,
-                          style: TextStyle(
-                            color: color,
+                          "Rent at Rs." + _contractBuyCost.toString() + '/-',
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red,
                           ),
                         ),
                       ),
@@ -204,6 +205,37 @@ class _CartProductDetailsState extends State<CartProductDetails> {
                           ),
                         ]),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Quantity',
+                            style: GoogleFonts.montserrat(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: color),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: VxStepper(
+                            onChange: (value) {
+                              setState(() {
+                                quantity = value;
+                              });
+                            },
+                            defaultValue: 1,
+                            min: 1,
+                            max: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   MaterialButton(
                     height: 60,
                     child: Row(
@@ -211,9 +243,7 @@ class _CartProductDetailsState extends State<CartProductDetails> {
                         Expanded(
                           child: Center(
                               child: Text(
-                            'Rent Now @ Rs.' +
-                                _contractBuyCost.toString() +
-                                "/-",
+                            'Rent Now',
                             style: GoogleFonts.montserrat(
                               fontSize: 19,
                             ),
@@ -226,9 +256,70 @@ class _CartProductDetailsState extends State<CartProductDetails> {
                     elevation: 1.0,
                     onPressed: () {
                       launchRazorPay();
+
+                      FirebaseFirestore.instance
+                          .collection("overall_cart")
+                          .add({
+                        "id": widget.productId,
+                        "cost": widget.productCost,
+                        "name": widget.productName,
+                        "color": widget.productColor,
+                        "material": widget.productMaterial,
+                        "imageUrl": widget.productImageUrl,
+                        "youtubeUrl": widget.productYoutubeUrl,
+                        "username": "Kishore M",
+                        "mobile": "6379659221",
+                        "address": "XYZ",
+                        "description": widget.productDescription,
+                        "timestamp": DateTime.now(),
+                      }).then((response) {
+                        //print(response.id);
+                      });
                     },
                   ),
                   const Divider(),
+                  MaterialButton(
+                    height: 60,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                              child: Text(
+                            'Add To Cart',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 19,
+                            ),
+                          )),
+                        ),
+                      ],
+                    ),
+                    color: color,
+                    textColor: Theme.of(context).primaryColor,
+                    elevation: 1.0,
+                    onPressed: () {
+                      var user = FirebaseAuth.instance.currentUser;
+                      FirebaseFirestore.instance
+                          .collection(user!.uid + "_cart")
+                          .add({
+                        "id": widget.productId,
+                        "cost": widget.productCost,
+                        "name": widget.productName,
+                        "color": widget.productColor,
+                        "material": widget.productMaterial,
+                        "imageUrl": widget.productImageUrl,
+                        "youtubeUrl": widget.productYoutubeUrl,
+                        "username": "Kishore M",
+                        "mobile": "6379659221",
+                        "address": "XYZ",
+                        "description": widget.productDescription,
+                        "timestamp": DateTime.now(),
+                      }).then((response) {
+                        //print(response.id);
+                      });
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => CartPage()));
+                    },
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -244,11 +335,14 @@ class _CartProductDetailsState extends State<CartProductDetails> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.productName!,
-                          style: GoogleFonts.montserrat(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontSize: 16,
+                        child: SizedBox(
+                          width: size.width * 0.6,
+                          child: Text(
+                            widget.productName!,
+                            style: GoogleFonts.montserrat(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
@@ -319,57 +413,9 @@ class _CartProductDetailsState extends State<CartProductDetails> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          width: 245,
-                          // direction: Axis.vertical,
-                          //fit : FlexFit.tight,
-                          // fit : FlexFit.loose,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              widget.productDescription!,
-                              softWrap: true,
-                              overflow: TextOverflow.fade,
-                              style: GoogleFonts.montserrat(
-                                color: Theme.of(context).secondaryHeaderColor,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: GestureDetector(
-                      onTap: () async {
-                        User? user = FirebaseAuth.instance.currentUser;
-                        await FirebaseFirestore.instance
-                            .collection("${user!.uid}_cart")
-                            .doc(docId)
-                            .delete();
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        width: size.width * 0.6,
-                        height: size.height * 0.06,
-                        decoration: BoxDecoration(
-                            color: color,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                          child: Text(
-                            'Remove from cart',
-                            style: GoogleFonts.montserrat(
-                                fontSize: 20,
-                                color: Theme.of(context).primaryColor),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const Divider(),
                 ],
               ),
             ),
@@ -381,16 +427,39 @@ class _CartProductDetailsState extends State<CartProductDetails> {
 
   @override
   void initState() {
-    _oneTimeBuyCost = int.parse(widget.productCost!);
+    quantity = 1;
+    _oneTimeBuyCost = int.parse(widget.productCost!) * quantity!;
     _week = 1;
-    _contractBuyCost = (_oneTimeBuyCost! * _week! / 100).toDouble();
+
+    _contractBuyCost = (_oneTimeBuyCost! * _week! / 20).toDouble() * quantity!;
     super.initState();
     initaliseRazorPay();
   }
 
   Razorpay? _razorpay;
 
-  void _handlePayment(PaymentSuccessResponse res) {}
+  void _handlePayment(PaymentSuccessResponse res) {
+    var user = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore.instance.collection(user!.uid + "_orders").add({
+      "id": widget.productId,
+      "cost": widget.productCost,
+      "name": widget.productName,
+      "color": widget.productColor,
+      "material": widget.productMaterial,
+      "imageUrl": widget.productImageUrl,
+      "youtubeUrl": widget.productYoutubeUrl,
+      "username": "Kishore M",
+      "mobile": "6379659221",
+      "address": "XYZ",
+      "description": widget.productDescription,
+      "timestamp": DateTime.now(),
+    }).then((response) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => OrderPage())); // print(response.id);
+    });
+  }
 
   void initaliseRazorPay() {
     _razorpay = Razorpay();

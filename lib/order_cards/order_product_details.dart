@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,7 +61,11 @@ class _OrderProductDetailsState extends State<OrderProductDetails> {
             child: GridTile(
               child: Container(
                   color: Colors.white,
-                  child: Image.network(widget.productImageUrl!)),
+                  child: CachedNetworkImage(
+                    imageUrl: widget.productImageUrl!,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )),
               footer: Container(
                 color: Colors.white70,
                 child: ListTile(

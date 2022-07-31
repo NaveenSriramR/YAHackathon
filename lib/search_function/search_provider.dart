@@ -16,7 +16,7 @@ class SearchProvider {
     // print(token);
     try {
       final response = await http.post(
-        Uri.parse("http://192.168.200.221:8000/api/search/'he'"),
+        Uri.parse("http://192.168.200.244:8000/api/search/ac"),
         body: json.encode({
           "query": query,
           "category": category,

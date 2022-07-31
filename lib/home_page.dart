@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +7,11 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'cart_page/cart_page_home.dart';
 import 'google_login_configs_provider/google_sign_in_configs_app.dart';
 import 'rent_app/scroll_categories.dart';
 import 'rent_app/shirts/product_details.dart';
+import 'your_orders/order_home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,6 +24,83 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    List<Widget> jewelryProducts = [
+      singleProductScroll(
+        size,
+        'https://5.imimg.com/data5/AE/AG/MY-40208357/men-gold-ring-500x500.jpeg',
+        'Men Gold-Ring jewellery',
+        '50000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://m.media-amazon.com/images/I/51sbLwDS98L._UL1500_.jpg',
+        'Men Gold-Bracelet jewellery',
+        '15000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://5.imimg.com/data5/AE/AG/MY-40208357/men-gold-ring-500x500.jpeg',
+        'Men Gold-Ring jewellery',
+        '50000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://4.imimg.com/data4/WM/XG/MY-1864875/men-s-antique-silver-bracelet-500x500.jpg',
+        'Men Gold-Bracelet jewellery',
+        '15000',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+    ];
+    List<Widget> shoeProducts = [
+      singleProductScroll(
+        size,
+        'https://5.imimg.com/data5/UG/KP/IY/SELLER-39529548/men-canvas-shoes-500x500.jpg',
+        'Shoes women All purpose High Quality',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://m.media-amazon.com/images/I/51-t-VfznFL._AC_UL320_.jpg',
+        'Shoes women All purpose High Quality',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://m.media-amazon.com/images/I/51-t-VfznFL._AC_UL320_.jpg',
+        'Shoes women All purpose High Quality',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://rukminim1.flixcart.com/image/332/398/ktuewsw0/shoe/v/r/v/8-8547-robbie-jones-white-original-imag73paqcugwrws.jpeg?q=50',
+        'Shoes women All purpose High Quality',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+      singleProductScroll(
+        size,
+        'https://5.imimg.com/data5/KA/EQ/NP/SELLER-2784282/img-2557-500x500.JPG',
+        'Shoes women All purpose High Quality',
+        '500',
+        'The stands are used for hanging saline, glucose bottles, blood bags and different medicines. These premium quality Saline Stands are sturdy tubular structures, mounted on castors for easy movement. ',
+        'White',
+      ),
+    ];
     List<Widget> rentProducts = [
       singleProductScroll(
         size,
@@ -268,7 +348,12 @@ class _HomePageState extends State<HomePage> {
                     radius: 50,
                     backgroundColor: Theme.of(context).primaryColor,
                     child: ClipOval(
-                        child: Image.network(user!.photoURL.toString())),
+                        child: CachedNetworkImage(
+                      imageUrl: user!.photoURL!.toString(),
+                      placeholder: (context, url) =>
+                          CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    )),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -308,19 +393,17 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 10),
                   InkWell(
                     onTap: () {
-                      _launchURL("https://www.cowin.gov.in/");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => CartPage()));
                     },
                     child: ListTile(
                       title: Text(
-                        'Book Covid Vaccine Slots',
+                        'Your Cart',
                         style: GoogleFonts.montserrat(
                           color: color,
                         ),
                       ),
-                      leading: Icon(
-                        Icons.control_point,
-                        color: color,
-                      ),
+                      leading: Icon(Icons.shopping_bag, color: color),
                       trailing: Icon(Icons.arrow_right, color: color, size: 32),
                     ),
                   ),
@@ -332,15 +415,19 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => OrderPage()));
+                    },
                     child: ListTile(
                       title: Text(
-                        'Check your BMI',
+                        'Your Orders',
                         style: GoogleFonts.montserrat(
                           color: color,
                         ),
                       ),
-                      leading: Icon(Icons.check_box, color: color),
+                      leading:
+                          Icon(Icons.add_shopping_cart_outlined, color: color),
                       trailing: Icon(Icons.arrow_right, color: color, size: 32),
                     ),
                   ),
@@ -479,6 +566,94 @@ class _HomePageState extends State<HomePage> {
                 itemCount: shirtProducts.length,
                 itemBuilder: (context, index) {
                   return shirtProducts[index];
+                },
+              ),
+            ),
+          ),
+          Container(
+            color: Theme.of(context).primaryColor,
+            width: size.width,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 15.0,
+                left: 15,
+              ),
+              child: Text(
+                'Top shoes',
+                textAlign: TextAlign.start,
+                style: GoogleFonts.nunito(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  fontSize: 22,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            color: Theme.of(context).primaryColor,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 200.0),
+              child: Divider(
+                thickness: 2,
+                color: color,
+              ),
+            ),
+          ),
+          Container(
+            width: size.width,
+            color: Theme.of(context).primaryColor,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 300),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: shoeProducts.length,
+                itemBuilder: (context, index) {
+                  return shoeProducts[index];
+                },
+              ),
+            ),
+          ),
+          Container(
+            color: Theme.of(context).primaryColor,
+            width: size.width,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 15.0,
+                left: 15,
+              ),
+              child: Text(
+                'Top Jewelry',
+                textAlign: TextAlign.start,
+                style: GoogleFonts.nunito(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  fontSize: 22,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            color: Theme.of(context).primaryColor,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 200.0),
+              child: Divider(
+                thickness: 2,
+                color: color,
+              ),
+            ),
+          ),
+          Container(
+            width: size.width,
+            color: Theme.of(context).primaryColor,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 300),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: jewelryProducts.length,
+                itemBuilder: (context, index) {
+                  return jewelryProducts[index];
                 },
               ),
             ),
@@ -703,8 +878,8 @@ class _HomePageState extends State<HomePage> {
                       )));
         },
         child: Container(
-          height: 250,
           width: 180,
+          height: 270,
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -722,7 +897,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 200,
+                height: 188,
                 width: 200,
                 decoration: BoxDecoration(
                     image: DecorationImage(

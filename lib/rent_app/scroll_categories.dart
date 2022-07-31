@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rec_hackoverflow/rent_app/shirts/braces_products.dart';
+import 'package:rec_hackoverflow/rent_app/shoes/shoes_products.dart';
 
 import 'data.dart';
+import 'fancy_dress/fancy_dress_products.dart';
+import 'jewelry/jewelry_dress_products.dart';
+import 'sunglasses/shoes_products.dart';
 
 class ScrollableCategories extends StatelessWidget {
   const ScrollableCategories({
@@ -35,6 +39,30 @@ class ScrollableCategories extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const Braces()));
+                      }
+                      if (index == 1) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const FancyDress()));
+                      }
+                      if (index == 2) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Shoes()));
+                      }
+                      if (index == 3) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Jewelry()));
+                      }
+                      if (index == 4) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Sunglasses()));
                       }
                     },
                     child: Container(

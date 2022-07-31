@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -93,30 +94,30 @@ class SingleOrderProduct extends StatelessWidget {
                             )));
               },
               child: GridTile(
-                footer: Container(
-                  color: Colors.white.withAlpha(100),
-                  child: ListTile(
-                    title: Text(
-                      productName!,
-                      style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.bold,
+                  footer: Container(
+                    color: Colors.white.withAlpha(100),
+                    child: ListTile(
+                      title: Text(
+                        productName!,
+                        style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    subtitle: Text(
-                      productCost!,
-                      style: TextStyle(
-                        color: color,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                      subtitle: Text(
+                        productCost!,
+                        style: TextStyle(
+                          color: color,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                child: Image.asset(
-                  productImageUrl!,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  child: CachedNetworkImage(
+                    imageUrl: productImageUrl!,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )),
             ),
           ),
         ),

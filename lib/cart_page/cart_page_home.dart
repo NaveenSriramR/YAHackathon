@@ -49,7 +49,7 @@ class _CartPageState extends State<CartPage> {
                 ),
                 itemBuilder: (BuildContext context, int index) {
                   return SingleCartProduct(
-                    snapshot: snapshot as QuerySnapshot,
+                    snapshot: snapshot,
                     index: index,
                     productName: snapshot.data.docs[index]['name']! == null
                         ? "A"

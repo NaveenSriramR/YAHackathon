@@ -42,17 +42,35 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return SingleOrderProduct(
-                      productName: snapshot.data.docs[index]['name']!, //
-                      productId: snapshot.data.docs[index]['id']!, //
-                      productCost: snapshot.data.docs[index]['cost']!, //
+                      productName: snapshot.data.docs[index]['name']! == null
+                          ? ""
+                          : snapshot.data.docs[index]['name']!, //
+                      productId: snapshot.data.docs[index]['id']! == null
+                          ? ""
+                          : snapshot.data.docs[index]['id']!, //
+                      productCost: snapshot.data.docs[index]['cost']! == null
+                          ? ""
+                          : snapshot.data.docs[index]['cost']!, //
 
-                      productColor: snapshot.data.docs[index]['color']!,
-                      productMaterial: snapshot.data.docs[index]['material']!,
-                      productImageUrl: snapshot.data.docs[index]['imageUrl']!,
-                      productYoutubeUrl: snapshot.data.docs[index]
-                          ['youtubeLink']!,
-                      productDescription: snapshot.data.docs[index]
-                          ['description']!,
+                      productColor: snapshot.data.docs[index]['color']! == null
+                          ? ""
+                          : snapshot.data.docs[index]['color']!,
+                      productMaterial:
+                          snapshot.data.docs[index]['material']! == null
+                              ? ""
+                              : snapshot.data.docs[index]['material']!,
+                      productImageUrl:
+                          snapshot.data.docs[index]['imageUrl']! == null
+                              ? ""
+                              : snapshot.data.docs[index]['imageUrl']!,
+                      productYoutubeUrl:
+                          snapshot.data.docs[index]['youtubeUrl']! == null
+                              ? ""
+                              : snapshot.data.docs[index]['youtubeUrl']!,
+                      productDescription:
+                          snapshot.data.docs[index]['description']! == null
+                              ? ""
+                              : snapshot.data.docs[index]['description']!,
 
                       // "id": widget.productId,
                       //"cost": widget.productCost,
